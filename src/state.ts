@@ -1,5 +1,5 @@
 import { createInterface, type Interface } from "readline";
-import { PokeAPI } from "./pokeapi.js";
+import { PokeAPI, type Pokemon } from "./pokeapi.js";
 import { getCommands } from "./commands.js";
 
 export type State = {
@@ -8,6 +8,7 @@ export type State = {
   pokeAPI: PokeAPI;
   nextLocationsURL: string | null;
   prevLocationsURL: string | null;
+  caughtPokemon: Record<string, Pokemon>;
 }
 
 export type CLICommand = {
@@ -29,5 +30,6 @@ export function initState(): State {
     pokeAPI: new PokeAPI(300000),
     nextLocationsURL: null,
     prevLocationsURL: null,
+    caughtPokemon: {}, 
   }
 }
