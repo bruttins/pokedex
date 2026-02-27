@@ -22,9 +22,10 @@ export function startREPL(state: State) {
     const commands = state.commands;
     const commandName = words[0];
     const cmd = commands[commandName];
+    const args = words.slice(1);
     if (cmd) {
       try {
-        await cmd.callback(state);
+        await cmd.callback(state, ...args);
       } catch (err) {
         if (err instanceof Error) {
           console.log(err.message);
@@ -37,4 +38,4 @@ export function startREPL(state: State) {
     }
     state.readline.prompt();
   });
-}
+} 
